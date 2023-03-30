@@ -52,7 +52,7 @@ prepare() {
 pkgver() {
   cd ${srcdir}/${_pkgname}
   printf "%s.r%s.%s" \
-    $(grep -ozP "(?s)^project\('gegl'.*?version: *'\K[\d.]*" meson.build|tr '\0' '\n') \
+    $(grep -ozP "(?s)^project\('gegl'.*?version: *'\K[^']*" meson.build|tr '\0' '\n') \
     $(git rev-list --count HEAD) \
     $(git rev-parse --short HEAD)
 }
