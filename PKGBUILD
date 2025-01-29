@@ -64,6 +64,7 @@ build() {
     meson "${srcdir}/${_pkgname}"\
           "${srcdir}/build" \
         --prefix=/usr \
+        -Dsdl2=disabled \
         -Dworkshop=true
     export NINJA_STATUS="[%p | %f<%r<%u | %cbps ] "
     ninja -C "${srcdir}/build"
