@@ -18,7 +18,7 @@ license=('GPL3' 'LGPL3')
 depends=('babl>=0.1.78'
          'libspiro>=0.5.0'
          'json-glib>=1.0.0'
-         'sdl2>=2.0.5') #'mrg'
+         'sdl2-compat>=2.0.5')
 makedepends=('git' 'meson' 'intltool' 'python' 'ruby'
              'luajit>=2.0.4'
              'libraw>=0.15.4'
