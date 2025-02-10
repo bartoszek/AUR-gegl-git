@@ -9,7 +9,7 @@
 
 _pkgname=gegl
 pkgname="${_pkgname}-git"
-pkgver=0.4.53.r10929.97606ad05
+pkgver=0.4.55.r10941.3f7d642de
 pkgrel=1
 pkgdesc="Graph based image processing framework"
 arch=('i686' 'x86_64')
@@ -50,9 +50,7 @@ provides=("gegl=${pkgver%%.r*}")
 conflicts=('gegl')
 options=(!libtool)
 source=('git+https://gitlab.gnome.org/GNOME/gegl.git')
-source+=('sdl2-compat.patch::https://gitlab.gnome.org/GNOME/gegl/-/merge_requests/208.patch')
-sha512sums=('SKIP'
-            'd8aff734371f5c7b694034c8f2aa07a5fdf89d93496dbc28cd2e6c6d404c1d0cd65cdcc17bcdeb1b493ad7d0125a93567feaa8be72663679b7ab36950e155421')
+sha512sums=('SKIP')
 
 pkgver() {
   cd ${srcdir}/${_pkgname}
@@ -62,14 +60,11 @@ pkgver() {
     $(git rev-parse --short HEAD)
 }
 
-prepare() {
-  git -C "${srcdir}/${_pkgname}" apply -v "${srcdir}/sdl2-compat.patch"
-}
-
 build() {
     meson "${srcdir}/${_pkgname}"\
           "${srcdir}/build" \
         --prefix=/usr \
+        -Dsdl2=disabled \
         -Dworkshop=true
     export NINJA_STATUS="[%p | %f<%r<%u | %cbps ] "
     ninja -C "${srcdir}/build"
