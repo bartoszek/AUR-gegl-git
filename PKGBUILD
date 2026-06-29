@@ -61,6 +61,7 @@ pkgver() {
 }
 
 build() {
+    export CFLAGS+=" -Wno-error=implicit-function-declaration"
     meson "${srcdir}/${_pkgname}"\
           "${srcdir}/build" \
         --prefix=/usr \
